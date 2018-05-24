@@ -42,12 +42,15 @@ if __name__ == "__main__":
     '''
         Save DF into .CSV
     '''
-    df.to_csv('test.csv',index=None)
+    df.columns = ['UNO', 'DOS', 'TRES']
+    df.to_csv('test.csv',index=None, header=False)
     
     '''
         Load CSV
     '''
-    csv_file = dbf.from_csv(csvfile='test.csv', to_disk=True) 
+    columns = list(df.columns)
+    dbf_table = dbf.from_csv(csvfile='test.csv',filename='mytable', 
+                            field_names=columns, to_disk=True) 
     
     
     
